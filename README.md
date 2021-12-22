@@ -7,7 +7,7 @@
    * Shrimadhav Uk
    * Mohammadsadat
 
-A Simple Telegram Bot By @Tellybots to add Subtitle Files in Video
+A Simple Telegram Bot By @Tellybots & @NaysaBots to add Subtitle Files in Video
 
 ### Features
 - Force Sub Button For Force Sub
@@ -15,9 +15,6 @@ A Simple Telegram Bot By @Tellybots to add Subtitle Files in Video
 - Auto Detect Media For Merging Subtitle
 - Can add Subtitle in Any Video
 - Support New Database Mongodb
-
-### Demo 
-<a href="https://t.me/subtitlemuxerbot"><img src="https://telegra.ph/file/3e552b88b4e197f51c0ce.jpg"></a>
 
 ### Deploy
 Deploy Your Own Bot 💕 **Star 🎉 Fork 🍴 & Deploy**
