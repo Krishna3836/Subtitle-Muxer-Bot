@@ -6,7 +6,7 @@ Don't Fork 🍽️ Right now Under Maintenance
 #### Credits
    * Shrimadhav Uk
    * Mohammadsadat
-
+   © Tellybots
 A Simple Telegram Bot By @Tellybots & @NaysaBots to add Subtitle Files in Video
 
 ### Features
