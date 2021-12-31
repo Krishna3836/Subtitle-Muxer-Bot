@@ -108,16 +108,17 @@ async def save_doc(client, message):
 
 
 @Client.on_message(filters.video & filters.private)
-async def save_video(client, message):
-    await AddUser(client, message)
+async def save_video(bot, message, cb=False):
     if Config.UPDATES_CHANNEL:
-      fsub = await handle_force_subscribe(client, message)
+      fsub = await handle_force_subscribe(bot, message)
       if fsub == 400:
         return
+    me = await bot.get_me()
+
     chat_id = message.from_user.id
     start_time = time.time()
-    downloading = await client.send_message(chat_id, 'Downloading your File!')
-    download_location = await client.download_media(
+    downloading = await bot.send_message(chat_id, 'Downloading your File!')
+    download_location = await bot.download_media(
         message = message,
         file_name = Config.DOWNLOAD_DIR+'/',
         progress = progress_bar,
@@ -129,13 +130,13 @@ async def save_video(client, message):
         )
 
     if download_location is None:
-        return client.edit_message_text(
+        return bot.edit_message_text(
             text = 'Downloading Failed!',
             chat_id = chat_id,
             message_id = downloading.message_id
         )
 
-    await client.edit_message_text(
+    await bot.edit_message_text(
         text = Translation.DOWNLOAD_SUCCESS.format(round(time.time()-start_time)),
         chat_id = chat_id,
         message_id = downloading.message_id
@@ -143,7 +144,7 @@ async def save_video(client, message):
 
     tg_filename = os.path.basename(download_location)
     try:
-        og_filename = message.video.file_name
+        og_filename = message.document.filename
     except:
         og_filename = False
     
@@ -161,7 +162,7 @@ async def save_video(client, message):
         text = Translation.CHOOSE_CMD
     else :
         text = 'Video file downloaded successfully.\nNow send Subtitle file!'
-    await client.edit_message_text(
+    await bot.edit_message_text(
             text = text,
             chat_id = chat_id,
             message_id = downloading.message_id
