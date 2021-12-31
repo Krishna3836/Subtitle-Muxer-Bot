@@ -1,7 +1,7 @@
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram import Client as Tellybots, filters
 
-from plugins.translation import translation
+from plugins.translation import Translation
 from config import Config
 import os
 import logging
