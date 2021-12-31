@@ -65,8 +65,14 @@ async def softmux(client, message):
 
 
 @Client.on_message(filters.command('hardmux') & filters.private)
-async def hardmux(client, message):
-    await AddUser(bot, update)
+async def hardmux(bot, message, cb=False):
+    await AddUser(bot, message)
+    if Config.UPDATES_CHANNEL:
+      fsub = await handle_force_subscribe(bot, message)
+      if fsub == 400:
+        return
+    me = await bot.get_me()
+    
     chat_id = message.from_user.id
     og_vid_filename = db.get_vid_filename(chat_id)
     og_sub_filename = db.get_sub_filename(chat_id)
@@ -77,10 +83,10 @@ async def hardmux(client, message):
         text += 'Send a Subtitle File!'
     
     if not (og_sub_filename or og_vid_filename) :
-        return await client.send_message(chat_id, text)
+        return await bot.send_message(chat_id, text)
     
     text = 'Your File is Being Hard Subbed. This might take a long time!'
-    sent_msg = await client.send_message(chat_id, text)
+    sent_msg = await bot.send_message(chat_id, text)
 
     hardmux_filename = await hardmux_vid(og_vid_filename, og_sub_filename, sent_msg)
     
@@ -92,7 +98,7 @@ async def hardmux(client, message):
     
     start_time = time.time()
     try:
-        await client.send_video(
+        await bot.send_video(
                 chat_id, 
                 progress = progress_bar, 
                 progress_args = (
@@ -117,6 +123,7 @@ async def hardmux(client, message):
     except :
         pass
     db.erase(chat_id)
+
 
 
 @Client.on_message(filters.command('softremove') & filters.private)
