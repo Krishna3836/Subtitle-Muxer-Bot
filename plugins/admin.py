@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram.types import (
     Message
 )
-from configs import Config
+from config import Config
 from pyrogram import Client
 from database.database import db
 from helper_func.progress_bar import humanbytes
