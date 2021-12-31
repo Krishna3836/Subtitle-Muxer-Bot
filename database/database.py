@@ -74,4 +74,4 @@ class Database:
         return user if user else None
 
 
-db = Database(Config.MONGODB_URI, "Rename-Bot")
+db = Database(Config.DATABASE_URL, "Rename-Bot")
