@@ -37,25 +37,19 @@ async def softmux(client, message):
 
     final_filename = db.get_filename(chat_id)
     os.rename(Config.DOWNLOAD_DIR+'/'+softmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
-    thumbnail_location = f"{Config.DOWNLOAD_LOCATION}/{m.from_user.id}.jpg"
-    # if thumbnail not exists checking the database for thumbnail
-    if not os.path.exists(thumbnail_location):
-        thumb_id = (await get_data(m.from_user.id)).thumb_id
-
-        if thumb_id:
-            thumb_msg = await c.get_messages(m.chat.id, thumb_id)
-            try:
-                thumbnail_location = await thumb_msg.download(file_name=thumbnail_location)
-            except:
-                thumbnail_location = None
-        else:
-            try:
-                thumbnail_location = await take_screen_shot(new_file_location, os.path.dirname(os.path.abspath(new_file_location)), random.randint(0, duration - 1))
-            except Exception as e:
-                logger.error(e)
-                thumbnail_location = None
-
-    width, height, thumbnail = await fix_thumb(thumbnail_location)
+    is_big = get_media_file_size(m.reply_to_message) > (10 * 1024 * 1024)
+    if not is_big:
+        _default_thumb_ = await db.get_thumbnail(m.from_user.id)
+        if not _default_thumb_:
+            _m_attr = get_file_attr(m.reply_to_message)
+            _default_thumb_ = _m_attr.thumbs[0].file_id \
+                if (_m_attr and _m_attr.thumbs) \
+                else None
+        await handle_not_big(c, m, get_media_file_id(m.reply_to_message), file_name,
+                             editable, get_file_type(m.reply_to_message), _default_thumb_)
+        return
+    file_type = get_file_type(m.reply_to_message)
+    _c_file_id = FileId.decode(get_media_file_id(m.reply_to_message))
     start_time = time.time()
     try:
         await client.send_document(
@@ -118,25 +112,20 @@ async def hardmux(bot, message, cb=False):
     
     final_filename = db.get_filename(chat_id)
     os.rename(Config.DOWNLOAD_DIR+'/'+hardmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
-    thumbnail_location = f"{Config.DOWNLOAD_LOCATION}/{m.from_user.id}.jpg"
-    # if thumbnail not exists checking the database for thumbnail
-    if not os.path.exists(thumbnail_location):
-        thumb_id = (await get_data(m.from_user.id)).thumb_id
+    is_big = get_media_file_size(m.reply_to_message) > (10 * 1024 * 1024)
+    if not is_big:
+        _default_thumb_ = await db.get_thumbnail(m.from_user.id)
+        if not _default_thumb_:
+            _m_attr = get_file_attr(m.reply_to_message)
+            _default_thumb_ = _m_attr.thumbs[0].file_id \
+                if (_m_attr and _m_attr.thumbs) \
+                else None
+        await handle_not_big(c, m, get_media_file_id(m.reply_to_message), file_name,
+                             editable, get_file_type(m.reply_to_message), _default_thumb_)
+        return
+    file_type = get_file_type(m.reply_to_message)
+    _c_file_id = FileId.decode(get_media_file_id(m.reply_to_message))
 
-        if thumb_id:
-            thumb_msg = await c.get_messages(m.chat.id, thumb_id)
-            try:
-                thumbnail_location = await thumb_msg.download(file_name=thumbnail_location)
-            except:
-                thumbnail_location = None
-        else:
-            try:
-                thumbnail_location = await take_screen_shot(new_file_location, os.path.dirname(os.path.abspath(new_file_location)), random.randint(0, duration - 1))
-            except Exception as e:
-                logger.error(e)
-                thumbnail_location = None
-
-    width, height, thumbnail = await fix_thumb(thumbnail_location)
     start_time = time.time()
     try:
         await bot.send_video(
