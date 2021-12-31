@@ -56,11 +56,11 @@ async def softmux(client, message):
                 thumbnail_location = None
 
     width, height, thumbnail = await fix_thumb(thumbnail_location)
-
     start_time = time.time()
     try:
         await client.send_document(
-                chat_id, 
+                chat_id,
+                thumb=thumbnail,
                 progress = progress_bar, 
                 progress_args = (
                     'Uploading your File!',
@@ -137,11 +137,11 @@ async def hardmux(bot, message, cb=False):
                 thumbnail_location = None
 
     width, height, thumbnail = await fix_thumb(thumbnail_location)
-
     start_time = time.time()
     try:
         await bot.send_video(
-                chat_id, 
+                chat_id,
+                thumb=thumbnail,
                 progress = progress_bar, 
                 progress_args = (
                     'Uploading your File!',
@@ -215,10 +215,10 @@ async def softremove(client, message):
                 thumbnail_location = None
 
     width, height, thumbnail = await fix_thumb(thumbnail_location)
-
     start_time = time.time()
     try:
         await client.send_document(
+                thumb=thumbnail,
                 chat_id, 
                 progress = progress_bar, 
                 progress_args = (
