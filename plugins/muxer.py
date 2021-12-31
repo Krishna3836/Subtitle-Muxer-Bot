@@ -37,7 +37,7 @@ async def softmux(client, message):
 
     final_filename = db.get_filename(chat_id)
     os.rename(Config.DOWNLOAD_DIR+'/'+softmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
-    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+    download_location = Config.DOWNLOAD_LOCATION + "/" + str(message.from_user.id) + ".jpg"
     start_time = time.time()
     try:
         await client.send_document(
@@ -99,7 +99,7 @@ async def hardmux(bot, message, cb=False):
     
     final_filename = db.get_filename(chat_id)
     os.rename(Config.DOWNLOAD_DIR+'/'+hardmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
-    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
+    download_location = Config.DOWNLOAD_LOCATION + "/" + str(message.from_user.id) + ".jpg"
 
     start_time = time.time()
     try:
