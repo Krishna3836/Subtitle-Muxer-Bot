@@ -5,7 +5,7 @@ from helper_func.mux import softmux_vid, hardmux_vid, softremove_vid
 from config import Config
 import time
 import os
-
+from database.adduser import AddUser
 db = Db()
 
 @Client.on_message(filters.command('softmux') & filters.private)
