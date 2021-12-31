@@ -18,3 +18,5 @@ class Config:
     SESSION_NAME = os.environ.get("SESSION_NAME", "")
     # database uri (mongodb)
     DATABASE_URL = os.environ.get("DATABASE_URL", "")
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-100"))
+    BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", "False"))
