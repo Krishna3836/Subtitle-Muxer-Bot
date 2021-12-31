@@ -4,7 +4,7 @@ from pyrogram import filters
 from pyrogram import Client as Tellybots
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid
-
+from config import Config
 
 broadcast_ids = {}
 
