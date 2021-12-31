@@ -12,7 +12,7 @@ from plugins.forcesub import handle_force_subscribe
 async def softmux(client, message):
     await AddUser(client, message)
     if Config.UPDATES_CHANNEL:
-      fsub = await handle_force_subscribe(bot, message)
+      fsub = await handle_force_subscribe(client, message)
       if fsub == 400:
         return
     chat_id = message.from_user.id
@@ -132,7 +132,10 @@ async def hardmux(bot, message, cb=False):
 
 @Client.on_message(filters.command('softremove') & filters.private)
 async def softremove(client, message):
-    await AddUser(client, message)
+    if Config.UPDATES_CHANNEL:
+      fsub = await handle_force_subscribe(client, message)
+      if fsub == 400:
+        return
     chat_id = message.from_user.id
     og_vid_filename = db.get_vid_filename(chat_id)
     og_sub_filename = db.get_sub_filename(chat_id)
