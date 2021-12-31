@@ -6,7 +6,7 @@ import time
 import time
 import os
 
-from translation import Translation
+from plugins.translation import Translation
 from config import Config
 from pyrogram import Client, filters
 from helper_func.progress_bar import progress_bar
