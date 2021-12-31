@@ -1,5 +1,5 @@
 pyrogram
-tgcrypto==1.2.2
+tgcrypto
 requests
 aiofiles
 ffmpeg-python
