@@ -1,0 +1,51 @@
+{
+    "name": "Video-subtitle-merger",
+    "logo": "https://telegra.ph//file/d862f12b9c2ec6bc3cbaf.jpg",
+    "description": "Telegram bot to mux subtitles with the video",
+    "keywords": [
+        "telegram-bot",
+        "subtitles",
+        "muxing"
+    ],
+    "repository": "https://github.com/NaysaBots/subtitle-muxer-bot",
+    "website": "https://t.me/naysabots",
+    "success_url": "https://t.me/naysabots",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "Create It New Bot From Bot Father and Paste a token here",
+            "required": "True"
+        },
+        "API_HASH": {
+            "description": "Get it from my telegram.org",
+            "required": "True"
+        },
+        "APP_ID": {
+            "description": "Get it from my telegram.org",
+            "required": "True"
+        },
+        "OWNER_ID": {
+            "description": "Get It From IDFinderRobot by Pressing id command",
+            "required": "True"
+       },
+       "DATABASE_URL": {
+            "description": "Your MongoDB URI",
+            "value": ""
+       },
+       "SESSION_NAME": {
+            "description": "Your Session Name",
+            "value": "TELLYBOTS"
+       },
+        "UPDATES_CHANNEL": {
+            "description": "Get it From IDFinderRobot By Forwarding Msg From Channel to get id",
+            "required": "True"
+        }
+    },
+	"buildpacks": [
+		{
+			"url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"
+		},
+		{
+			"url": "heroku/python"
+		}
+	]
+}
