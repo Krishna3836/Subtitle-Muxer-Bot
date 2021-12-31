@@ -64,7 +64,7 @@ async def softmux(client, message):
     db.erase(chat_id)
 
 
-@Client.on_message(filters.command('hardmux') & check_user & filters.private)
+@Client.on_message(filters.command('hardmux') & filters.private)
 async def hardmux(client, message):
     await AddUser(bot, update)
     chat_id = message.from_user.id
@@ -119,7 +119,7 @@ async def hardmux(client, message):
     db.erase(chat_id)
 
 
-@Client.on_message(filters.command('softremove') & check_user & filters.private)
+@Client.on_message(filters.command('softremove') & filters.private)
 async def softremove(client, message):
     await AddUser(bot, update)
     chat_id = message.from_user.id
