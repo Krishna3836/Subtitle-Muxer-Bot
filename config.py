@@ -10,3 +10,11 @@ class Config:
     #comma seperated user id of users who are allowed to use
 
     DOWNLOAD_DIR = 'downloads'
+    OWNER_ID = int(os.environ.get("OWNER_ID", 1316963576))
+    UPDATES_CHANNEL = os.environ.get("UPDATES_CHANNEL", None)  
+    # your telegram id
+    OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+    # database session name, example: xurluploader
+    SESSION_NAME = os.environ.get("SESSION_NAME", "")
+    # database uri (mongodb)
+    DATABASE_URL = os.environ.get("DATABASE_URL", "")
