@@ -15,8 +15,11 @@ from helper_func.dbhelper import Database as Db
 import re
 import requests
 from urllib.parse import quote, unquote
-
+from database.adduser import AddUser
+from plugins.forcesub import handle_force_subscribe
 db = Db()
+
+from config import Config
 
 @Client.on_message(filters.document & filters.private)
 async def save_doc(client, message):
