@@ -37,12 +37,11 @@ async def softmux(client, message):
 
     final_filename = db.get_filename(chat_id)
     os.rename(Config.DOWNLOAD_DIR+'/'+softmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
-
+    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
     start_time = time.time()
     try:
         await client.send_document(
                 chat_id,
-                thumb=thumbnail,
                 progress = progress_bar, 
                 progress_args = (
                     'Uploading your File!',
@@ -100,13 +99,12 @@ async def hardmux(bot, message, cb=False):
     
     final_filename = db.get_filename(chat_id)
     os.rename(Config.DOWNLOAD_DIR+'/'+hardmux_filename,Config.DOWNLOAD_DIR+'/'+final_filename)
-
+    download_location = Config.DOWNLOAD_LOCATION + "/" + str(update.from_user.id) + ".jpg"
 
     start_time = time.time()
     try:
         await bot.send_video(
                 chat_id,
-                thumb=thumbnail,
                 progress = progress_bar, 
                 progress_args = (
                     'Uploading your File!',
