@@ -10,7 +10,7 @@ db = Db()
 
 @Client.on_message(filters.command('softmux') & filters.private)
 async def softmux(client, message):
-
+    await AddUser(bot, update)
     chat_id = message.from_user.id
     og_vid_filename = db.get_vid_filename(chat_id)
     og_sub_filename = db.get_sub_filename(chat_id)
@@ -66,7 +66,7 @@ async def softmux(client, message):
 
 @Client.on_message(filters.command('hardmux') & check_user & filters.private)
 async def hardmux(client, message):
-    
+    await AddUser(bot, update)
     chat_id = message.from_user.id
     og_vid_filename = db.get_vid_filename(chat_id)
     og_sub_filename = db.get_sub_filename(chat_id)
@@ -121,7 +121,7 @@ async def hardmux(client, message):
 
 @Client.on_message(filters.command('softremove') & check_user & filters.private)
 async def softremove(client, message):
-
+    await AddUser(bot, update)
     chat_id = message.from_user.id
     og_vid_filename = db.get_vid_filename(chat_id)
     og_sub_filename = db.get_sub_filename(chat_id)
