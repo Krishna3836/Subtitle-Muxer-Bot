@@ -28,9 +28,6 @@ Softmux
 HardMux
 ➠ Send /hardmux to add Subtitle hardly in it 
 
-Softremove
-➠ Send /softremove to extract subtitles from softmuxed video using that sub file
-
 Made With 💕 By @Tellybots_4u
 """
     ABOUT_TEXT = """
