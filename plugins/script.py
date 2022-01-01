@@ -9,7 +9,7 @@ Hey {}
 
 I am Telegram Most Powerful Subtitle Muxer Bot
 
-I can Mux Any Srt or Txt File in File or Video
+I can Mux Any srt or ass File in File or Video
 
 Use Help Command to Know How to Use me
 
