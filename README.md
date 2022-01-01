@@ -7,7 +7,7 @@
    * Shrimadhav Uk
    * Mohammadsadat
 
-A Simple Telegram Bot By @Tellybots to add Subtitle Files in Video
+A Simple Telegram Bot By @Tellybots Team and By @NaysaBots Team to add Subtitle Files in Video
 
 ### Features
 - Force Sub Button For Force Sub
