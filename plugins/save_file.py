@@ -66,11 +66,11 @@ async def save_doc(bot, message, cb=False):
     ext = save_filename.split('.').pop()
     filename = str(round(start_time))+'.'+ext
 
-    if ext in ['srt','ass','SRT','ASS']:
+    if ext in ['srt','ass']:
         os.rename(Config.DOWNLOAD_DIR+'/'+tg_filename,Config.DOWNLOAD_DIR+'/'+filename)
         db.put_sub(chat_id, filename)
         if db.check_video(chat_id):
-            text = 'Subtitle file downloaded successfully.\nChoose your desired muxing!\n[ /softmux , /hardmux , /softremove]'
+            text = 'Subtitle file downloaded successfully.\nChoose your desired muxing!\n[ /softmux , /hardmux ]'
         else:
             text = 'Subtitle file downloaded.\nNow send Video File!'
 
@@ -80,11 +80,11 @@ async def save_doc(bot, message, cb=False):
             message_id = downloading.message_id
         )
 
-    elif ext in ['mp4','mkv','webm']:
+    elif ext in ['mp4','mkv']:
         os.rename(Config.DOWNLOAD_DIR+'/'+tg_filename,Config.DOWNLOAD_DIR+'/'+filename)
         db.put_video(chat_id, filename, save_filename)
         if db.check_sub(chat_id):
-            text = 'Video file downloaded successfully.\nChoose your desired muxing.\n[ /softmux , /hardmux , /softremove ]'
+            text = 'Video file downloaded successfully.\nChoose your desired muxing.\n[ /softmux , /hardmux ]'
         else :
             text = 'Video file downloaded successfully.\nNow send Subtitle file!'
         await bot.edit_message_text(
@@ -154,7 +154,7 @@ async def save_video(bot, message, cb=False):
     
     db.put_video(chat_id, filename, save_filename)
     if db.check_sub(chat_id):
-        text = 'Video file downloaded successfully.\nChoose your desired muxing.\n[ /softmux , /hardmux , /softremove]'
+        text = 'Video file downloaded successfully.\nChoose your desired muxing.\n[ /softmux , /hardmux ]'
     else :
         text = 'Video file downloaded successfully.\nNow send Subtitle file!'
     await bot.edit_message_text(
@@ -205,7 +205,7 @@ async def save_url(bot, message, cb=False):
 
     sent_msg = await bot.send_message(chat_id, 'Preparing Your Download')
     ext = save_filename.split('.')[-1]
-    if ext not in ['mp4','mkv','webm'] :
+    if ext not in ['mp4','mkv'] :
         return await sent_msg.edit(Translation.UNSUPPORTED_FORMAT.format(ext))
 
     size = None
@@ -246,7 +246,7 @@ async def save_url(bot, message, cb=False):
 
     db.put_video(chat_id, filename, save_filename)
     if db.check_sub(chat_id) :
-        text = 'Video File Downloaded.\nChoose your desired muxing\n[ /softmux , /hardmux , /softremove ]'
+        text = 'Video File Downloaded.\nChoose your desired muxing\n[ /softmux , /hardmux ]'
     else :
         text = 'Video File Downloaded.\nNow send Subtitle file!'
     try:
